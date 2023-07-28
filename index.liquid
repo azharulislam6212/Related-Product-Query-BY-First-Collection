@@ -1,0 +1,17 @@
+      {%- if product.collections != empty -%}
+        {%- assign current_product = product -%}
+        {%- assign collection = current_product.collections.first -%}
+        {% for product in collection.products %}
+          {%- unless product.handle contains current_product.handle %}
+
+           {% render 'card-product',
+              card_product: product,
+              media_aspect_ratio: section.settings.image_ratio,
+              show_secondary_image: section.settings.show_secondary_image,
+              show_vendor: section.settings.show_vendor,
+              show_rating: section.settings.show_rating
+            %}
+            
+                {% endunless -%}
+        {% endfor %}
+     {%- endif -%}
